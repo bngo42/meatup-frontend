@@ -32,24 +32,28 @@ export class InvitePopoverPage {
   public acceptInvite() : void {
     console.log("ACCEPT");
     this.request.acceptInvite({ id: this.invite['_id'], current : this.current['_id'] })
-      .catch(console.error)
-      .then(() => {
+      .then(res => {
+        let data = res.json();
+        this.toastMessage(data.error || data.success);
         this.closePopover();
-      });
+      })
+      .catch(console.error);
   }
 
   public denyInvite() : void {
     console.log("DENY");
     this.request.denyInvite({ id: this.invite['_id'], current : this.current['_id'] })
-      .catch(console.error)
-      .then(() => {
+      .then(res => {
+        let data = res.json();
+        this.toastMessage(data.error || data.success);
         this.closePopover();
-      });
+      })
+      .catch(console.error);
   }
   
   public deleteInvite() : void {
     let alert = this.alertCtrl.create({
-      title: 'Delete friend ?',
+      title: 'Delete invitation ?',
       message: 'Are you sure you want to delete this invite ?',
       buttons: [
         {
@@ -86,6 +90,7 @@ export class InvitePopoverPage {
       message,
       duration : 3000
     })
+    toast.present();
   }
 
 }
