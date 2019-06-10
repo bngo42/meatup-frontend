@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CardMapsComponent } from './card-maps/card-maps';
-import { SidenavComponent } from './sidenav/sidenav';
 @NgModule({
-	declarations: [CardMapsComponent,
-    SidenavComponent],
+	declarations: [],
 	imports: [],
-	exports: [CardMapsComponent,
-    SidenavComponent]
+	exports: []
 })
 export class ComponentsModule {}
