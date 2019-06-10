@@ -71,6 +71,10 @@ export class InvitePage {
 
   }
 
+  public generateDirection(addr : string) {
+    console.log(`https://www.google.com/maps/dir//${encodeURIComponent(addr)}/`);
+  }
+
   public getTimeFrom(date : Date) : string {
     let newDate = new Date(date);
     return moment(newDate).fromNow();
