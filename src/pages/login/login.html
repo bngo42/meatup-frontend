@@ -1,0 +1,22 @@
+<ion-content padding>
+  <h1>LOGO</h1>
+
+  <form *ngIf="loginPage" [formGroup]="loginForm" (ngSubmit)="login()">
+    <ion-input formControlName="username" placeholder="Username" type="text" value=""></ion-input>
+    <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!loginForm.valid">LOGIN</button>
+    </div>
+  </form>
+
+  <form *ngIf="!loginPage" [formGroup]="registerForm" (ngSubmit)="register()">
+    <ion-input formControlName="email" placeholder="Email" type="email"></ion-input>
+    <ion-input formControlName="username" placeholder="Username" type="text" value=""></ion-input>
+    <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!registerForm.valid">REGISTER</button>
+    </div>
+  </form>
+  <div *ngIf="errorMsg">{{ errorMsg }}</div>
+  <a (click)="togglePage()">{{ loginPage ? "Don't have an account ? Click here to create one" : "Already have an account ? Click here to login" }}</a>
+</ion-content>

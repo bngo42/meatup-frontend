@@ -1,0 +1,30 @@
+<ion-card (click)="showInvite(data)">
+  <ion-row class="overlay">
+  <ion-item >
+    <ion-avatar item-start>
+      <img [src]="data.creator?.avatar">
+    </ion-avatar>
+    <h1>{{ data.creator.username }}</h1>
+  </ion-item>
+  </ion-row>
+  <img [src]="getMap(data.location.latitude, data.location.longitude)"/>
+  <ion-item>
+    <h1>{{ data.title }}</h1>
+    <h5>{{ data.location.address }}</h5>
+    <h1 item-end>{{ data.datetime }}</h1>
+  </ion-item>
+  <ion-item *ngIf="data.invited.length > 0">
+    <ion-row>
+      Also invited:
+      <ion-col>
+        <ion-row>
+          <ion-avatar *ngFor="let item of data.invited | slice:0:5; let i=index" >
+            <img [src]="item.avatar"/>
+          </ion-avatar>
+        </ion-row>
+        <ion-note *ngIf="data.invited.length > 5">{{ 'and ' + (data.invited.length - 5) +' other...'}}</ion-note>
+      </ion-col>
+    </ion-row>
+    <ion-note item-end>{{ getTimeFrom(data.date_creation) }}</ion-note>
+  </ion-item>
+</ion-card>

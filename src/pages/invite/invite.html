@@ -1,0 +1,33 @@
+<ion-header no-border>
+  <ion-navbar>
+      <ion-buttons end>
+          <button ion-button icon-only (click)="displayPopOver($event)">
+            <ion-icon name="more"></ion-icon>          
+          </button>
+        </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div id="gMap" #gMap></div>
+  <ion-item no-lines>
+      {{ 'isOwner ' + isOwner }}
+    <h1>{{ data.title }}</h1>
+    <h5>{{ data.location.address }}</h5>
+    <div item-end>
+      <h1>{{ data.datetime }}</h1>
+      <ion-note>{{ getTimeFrom(data.date_creation) }}</ion-note>
+    </div>
+  </ion-item>
+  <ion-item no-lines>
+    <h1 class="hr-title italic"> INVITED </h1>
+    <ion-list>
+      <ion-item *ngFor="let item of data.invited">
+        <ion-avatar item-start>
+          <img [src]="item?.avatar"/>
+        </ion-avatar>
+        <h2>{{ item.username }}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-item>
+  </ion-content>

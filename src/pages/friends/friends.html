@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Friends of {{ current?.username }}</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+<ion-content no-padding>
+  <ion-item no-lines>
+    <ion-searchbar [(ngModel)]="searchInput"></ion-searchbar>
+    <button item-end ion-button (click)="search()">ADD</button>
+    {{ errorMsg }}
+  </ion-item>
+
+  <ion-list *ngIf="requestList?.length > 0">
+    <ion-title>Request</ion-title>
+    <ion-item *ngFor="let item of requestList">
+      <ion-avatar item-start>
+          <img src="{{ 'assets/imgs/default_avatar.png' }}"/>
+        </ion-avatar>
+        <p>{{ item.username }}</p>
+        <div item-end>
+          <button ion-button color="secondary" (click)="acceptRequest(item)">
+            <ion-icon name="checkmark"></ion-icon>
+          </button>
+          <button ion-button color="danger" (click)="denyRequest(item)">
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="friendsList?.length > 0">
+    <ion-title>Friends</ion-title>
+    <ion-item *ngFor="let item of friendsList">
+      <ion-avatar item-start>
+        <img [src]="item.avatar"/>
+      </ion-avatar>
+      <p>{{ item.username }}</p>
+      <button ion-button item-end (click)="deleteFriend(item)">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-item *ngIf="!friendsList?.length > 0" no-lines>
+    <ion-note>You have no friends :(</ion-note>
+  </ion-item>
+</ion-content>
+  

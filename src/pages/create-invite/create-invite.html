@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar hideBackButton no-border-top>
+    <ion-buttons>
+      <button ion-button icon-only (click)="navBack()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-slides centeredSlides (ionSlideWillChange)="updateSlideIndex()">
+    <ion-slide padding class="swiper-no-swiping">
+      <ion-title><h1>First, give a title to this meatup</h1></ion-title>
+      <div [hidden]="slideIndex !== 0">
+        <ion-item>
+          <ion-input type="text" [(ngModel)]="title"></ion-input>
+        </ion-item>
+        <ion-toolbar position="bottom">
+          <button item-end [hidden]="!title" ion-button block (click)="next()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+        </ion-toolbar>
+      </div>
+    </ion-slide>
+    <ion-slide padding class="swiper-no-swiping">
+      <div [hidden]="slideIndex !== 1">
+        <ion-title><h1>Now, tell me where is it ?</h1></ion-title>
+        <ion-searchbar #searchMaps></ion-searchbar>
+        <div id="gMap" #gMap></div>
+        <button *ngIf="markerPlaced" item-end ion-button block (click)="next()">
+          <ion-icon name="arrow-round-forward"></ion-icon>
+        </button>
+      </div>
+    </ion-slide>
+    <ion-slide padding class="swiper-no-swiping">
+        <ion-title><h1>Okay, when is it ?</h1></ion-title>
+        <div [hidden]="slideIndex !== 2">  
+          <ion-icon id="calendar" *ngIf="!datePicked" name="calendar"></ion-icon>
+          <ion-datetime min="{{ getCurrentDate() }}" displayFormat="MM/DD/YYYY HH:mm" [(ngModel)]="datePicked"></ion-datetime>
+          <button item-end [hidden]="!datePicked" ion-button block (click)="next()"><ion-icon name="arrow-round-forward"></ion-icon></button>
+        </div>
+    </ion-slide>
+    <ion-slide padding class="swiper-no-swiping">
+      <ion-row>
+        <ion-title>
+          <h1 [hidden]="!friendsList?.friends || friendsList?.friends?.length === 0">Great ! Now invite your friends</h1>
+          <h1 [hidden]="friendsList?.friends && friendsList?.friends?.length > 0">Great ! Now invite your.... oh no...<br>you don't have any friends...</h1>
+        </ion-title>
+      </ion-row>
+      <div [hidden]="slideIndex !== 3">
+        <ion-list [hidden]="friendsList?.friends?.length === 0">
+          <button ion-item *ngFor="let item of friendsList?.friends" (click)="toggleUser(item['_id'])">
+            <ion-avatar item-start>
+              <img [src]="item.avatar">
+            </ion-avatar>
+            <div>{{ item.username }}</div>
+          </button>
+        </ion-list>
+        <button [hidden]="invitedList?.length === 0" item-end ion-button block (click)="sendInvite()">SEND INVITATIONS</button>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
+
+

@@ -1,0 +1,10 @@
+<ion-list inset no-lines [ngSwitch]="isOwner">
+  <div *ngSwitchCase="false">
+    <button (click)="acceptInvite()" ion-item>Interested</button>
+    <button (click)="denyInvite()" ion-item>Not interested</button>
+  </div>
+  <div *ngSwitchCase="true">
+    <button ion-item>Invite Friends</button>
+    <button (click)="deleteInvite()" ion-item color="danger">Delete this invite</button>
+  </div>
+</ion-list>

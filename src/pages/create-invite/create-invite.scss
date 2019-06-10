@@ -1,0 +1,26 @@
+page-create-invite {
+    .toolbar {
+        position:absolute;
+    }
+
+    .toolbar .toolbar-background {
+        background : initial !important;
+        border: none !important;
+    }
+
+    .searchbar-search-icon { 
+        display:none; width:0; height:0; 
+    }
+
+    .searchbar-input {
+        padding-left: 9px !important;
+      }
+
+    #gMap {
+        height:75vh;
+    }
+
+    #calendar {
+        font-size: 50pt;
+    }
+}

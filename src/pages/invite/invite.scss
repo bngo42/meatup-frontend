@@ -1,0 +1,34 @@
+page-invite {
+    .toolbar {
+        position:absolute;
+    }
+
+    .toolbar .toolbar-background {
+        background : initial !important;
+        border: none !important;
+    }
+
+    #gMap {
+        height:80vw;
+    }
+
+    .hr-title {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+    }
+    .hr-title:before, .hr-title:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 50%;
+        height: 1px;
+        content: '\a0';
+        background-color: black;
+    }
+    .hr-title:before {
+        margin-left: -50%;
+        text-align: right;
+    }
+}

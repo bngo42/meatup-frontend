@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar #content>
+    <ion-buttons>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="contact"></ion-icon>          
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar>
+      <ion-segment [(ngModel)]="inviteType" color="primary">
+        <ion-segment-button value="receive">
+          Receive
+          <ion-badge item-end>{{ receive?.length }}</ion-badge>
+        </ion-segment-button>
+        <ion-segment-button value="sent">
+          Sent
+          <ion-badge item-end>{{ sent?.length }}</ion-badge>
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refreshInvites($event)">
+    <ion-refresher-content refreshingSpinner="circles"></ion-refresher-content>
+  </ion-refresher>
+  <div [ngSwitch]="inviteType">
+    
+    <div *ngSwitchCase="'receive'">
+      <card-maps *ngFor="let item of receive" [data]="item"></card-maps>
+    </div>
+
+    <div *ngSwitchCase="'sent'">
+      <div padding>
+        <button ion-button block round (click)="createInvite()">Invite Friends</button>
+      </div>
+      <card-maps *ngFor="let item of sent" [data]="item"></card-maps>
+    </div>
+
+  </div>
+</ion-content>
