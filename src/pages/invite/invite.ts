@@ -96,6 +96,16 @@ export class InvitePage {
     }
   }
   
+  public updateEntries() {
+    this.request.getInviteEntries({id: this.data['_id']})
+        .then(res => {
+            let data = res.json();
+            
+            console.log(data);
+        })
+        .catch(console.error);
+  }
+  
   public denyInvite() : void {
     if (this.current){
       this.request.denyInvite({ id: this.data['_id'], current : this.current['_id'] })

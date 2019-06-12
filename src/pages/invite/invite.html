@@ -19,6 +19,7 @@
       <ion-note title="{{data.date_creation}}">{{ getTimeFrom(data.date_creation) }}</ion-note>
     </div>
   </ion-item>
+  <div ion-button (click)="updateEntries()">UPDATE ENTRIES</div>
  <div [hidden]="isOwner" class="action-buttons">
     <ion-row>
         <ion-col>
