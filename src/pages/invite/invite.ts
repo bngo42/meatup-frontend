@@ -6,6 +6,8 @@ import * as moment from 'moment';
 import { RequestProvider } from '../../providers/request/request';
 import { LoadingController } from 'ionic-angular/components/loading/loading-controller';
 import { PopoverController } from 'ionic-angular/components/popover/popover-controller';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
+
 import { InvitePopoverPage } from '../invite-popover/invite-popover';
 
 
@@ -29,7 +31,8 @@ export class InvitePage {
     public loader: LoadingController,
     public apiLoader : MapsAPILoader,
     public request: RequestProvider,
-    public popCtrl: PopoverController) {
+    public popCtrl: PopoverController,
+    public toastCtrl: ToastController) {
 
     let load = this.loader.create();
     load.present();
@@ -71,9 +74,6 @@ export class InvitePage {
 
   }
 
-  public generateDirection(addr : string) {
-    console.log(`https://www.google.com/maps/dir//${encodeURIComponent(addr)}/`);
-  }
 
   public getTimeFrom(date : Date) : string {
     let newDate = new Date(date);
@@ -85,26 +85,24 @@ export class InvitePage {
   }
 
   public acceptInvite() : void {
-    console.log("Invite accepted");
     if (this.current){
       this.request.acceptInvite({ id: this.data['_id'], current : this.current['_id'] })
         .then(res => {
           let data = res.json();
-          
-          console.log(data);
+
+          this.toastMessage(data.success || data.error);
         })
         .catch(console.error);
     }
   }
   
   public denyInvite() : void {
-    console.log("Invite denied");
     if (this.current){
       this.request.denyInvite({ id: this.data['_id'], current : this.current['_id'] })
         .then(res => {
           let data = res.json();
-          
-          console.log(data);
+
+          this.toastMessage(data.success || data.error);
         })
         .catch(console.error);
     }
@@ -119,6 +117,14 @@ export class InvitePage {
     popover.present({
       ev: myEvent
     });
+  }
+  
+  public toastMessage(message : string) : void {
+    let toast = this.toastCtrl.create({
+      message,
+      duration : 3000
+    })
+    toast.present();
   }
 
 }

@@ -1,10 +1,10 @@
 <ion-header no-border>
   <ion-navbar>
-      <ion-buttons end>
-          <button ion-button icon-only (click)="displayPopOver($event)">
-            <ion-icon name="more"></ion-icon>          
-          </button>
-        </ion-buttons>
+      <ion-buttons [hidden]="!isOwner" end>
+         <button ion-button icon-only (click)="displayPopOver($event)">
+           <ion-icon name="more"></ion-icon>
+         </button>
+       </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -13,12 +13,22 @@
   <ion-item no-lines>
     <h1>{{ data.title }}</h1>
     <h5>{{ data.location.address }}</h5>
-    <a ion-button target="_blank" [href]="'https://www.google.com/maps/dir//' + data.location.address">OUVRIR DANS GOOGLE MAPS</a>
+    <a ion-button target="_blank" [href]="'https://www.google.com/maps/dir//' + data.location.address">DEFINIR UN ITINERAIRE</a>
     <div item-end>
-      <h1>{{ data.datetime }}</h1>
-      <ion-note>{{ getTimeFrom(data.date_creation) }}</ion-note>
+      <h1 title="{{data.datetime}}">{{ data.datetime }}</h1>
+      <ion-note title="{{data.date_creation}}">{{ getTimeFrom(data.date_creation) }}</ion-note>
     </div>
   </ion-item>
+ <div [hidden]="isOwner" class="action-buttons">
+    <ion-row>
+        <ion-col>
+            <button (click)="denyInvite()" ion-button color="danger"><ion-icon name="close"></ion-icon></button>
+        </ion-col>
+        <ion-col>
+            <button (click)="acceptInvite()" ion-button color="secondary"><ion-icon name="checkmark"></ion-icon></button>
+        </ion-col>
+    </ion-row>
+</div>
   <ion-item no-lines>
     <h1 class="hr-title italic"> INVITED </h1>
     <ion-list>

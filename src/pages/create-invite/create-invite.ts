@@ -156,7 +156,11 @@ export class CreateInvitePage {
   }
   
   public checkToggle(user: string) : boolean {
-    return this.invitedList.includes(user);
+    for (let i = 0; i < this.invitedList.length; i++){
+        if (this.invitedList[i] == user)
+            return true;
+    }
+    return false;
   }
 
   private getCurrentSlide() : Number {

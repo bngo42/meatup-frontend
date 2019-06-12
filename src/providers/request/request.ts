@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 
 import * as moment from 'moment';
 
-
-
 @Injectable()
 export class RequestProvider {
 
   private baseurl = 'https://meat-db.herokuapp.com';
-  
+
   constructor(private http : Http) {
   }
 
@@ -27,21 +25,21 @@ export class RequestProvider {
   public onError(error : any, reject : (raison? : any) => void) : void {
     reject(error || new Error('Server error'))
   }
-  
+
   //AUTH
 
   public login(data?: Object, params?: Object) : Promise<Response> {
     return this.request(RequestMethod.Post, '/auth/login', data, params);
   }
-  
+
   public register(data?: Object, params?: Object) : Promise<Response> {
     return this.request(RequestMethod.Post, '/auth/register', data, params);
   }
-  
+
   public checkToken(data?: Object, params?: Object) : Promise<Response> {
     return this.request(RequestMethod.Post, '/auth/token', data, params);
   }
-  
+
   //INVITE
 
   public getInvite(params?: Object) : Promise<Response>{
@@ -62,6 +60,10 @@ export class RequestProvider {
   
   public denyInvite(data?: Object, params?: Object) : Promise<Response> {
     return this.request(RequestMethod.Post, '/invite/deny', data, params);
+  }
+  
+  public getInviteEntries(data?: Object, params?: Object) : Promise<Response> {
+    return this.request(RequestMethod.Post, '/invite/entries', data, params);
   }
   //FRIENDS
 
@@ -115,7 +117,6 @@ export class RequestProvider {
   public logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
-
   }
 
 }
