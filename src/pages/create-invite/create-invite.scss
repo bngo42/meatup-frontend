@@ -23,4 +23,26 @@ page-create-invite {
     #calendar {
         font-size: 50pt;
     }
+    
+    .user-toggle{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .user-toggle .user {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .user-toggle .user .username {
+        margin: auto;
+        text-transform: uppercase;
+        font-size: 1.5em;
+    }
+    
+    .user-toggle .check-icon {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
 }

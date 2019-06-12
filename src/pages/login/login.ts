@@ -51,7 +51,7 @@ export class LoginPage {
     });
 
     this.registerForm = this.formBuilder.group({
-      email : ['', Validators.compose([Validators.required, Validators.email])],     
+      email : ['', Validators.compose([Validators.required, Validators.email])],
       username : ['', Validators.required],
       password : ['', Validators.required]
     });

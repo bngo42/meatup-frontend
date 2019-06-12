@@ -33,15 +33,17 @@
   </ion-refresher>
   <div [ngSwitch]="inviteType">
     
-    <div *ngSwitchCase="'receive'">
+    <div *ngSwitchCase="'receive'" class="invite-list">
       <card-maps *ngFor="let item of receive" [data]="item"></card-maps>
     </div>
 
     <div *ngSwitchCase="'sent'">
-      <div padding>
-        <button ion-button block round (click)="createInvite()">Invite Friends</button>
-      </div>
-      <card-maps *ngFor="let item of sent" [data]="item"></card-maps>
+        <div padding>
+            <button ion-button block round (click)="createInvite()">Invite Friends</button>
+        </div>
+        <div class="invite-list">
+            <card-maps *ngFor="let item of sent" [data]="item"></card-maps>
+        </div>
     </div>
 
   </div>

@@ -154,6 +154,10 @@ export class CreateInvitePage {
     this.slideIndex = this.slides.getActiveIndex();
     console.log(this.slideIndex);
   }
+  
+  public checkToggle(user: string) : boolean {
+    return this.invitedList.includes(user);
+  }
 
   private getCurrentSlide() : Number {
     return this.slides.getActiveIndex();
@@ -166,7 +170,7 @@ export class CreateInvitePage {
   private formatDate(date) : string {
     return moment(date).format('YYYY-MM-DD hh:mm').toString();
   }
-  
+
   private toggleUser(user) : void{
     let index = this.invitedList.indexOf(user);
 

@@ -1,4 +1,11 @@
 page-home {
+
+    .invite-list {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
     img {
         -moz-user-select: none;
         -webkit-user-select: none;
@@ -8,4 +15,8 @@ page-home {
         user-drag: none;
         -webkit-touch-callout: none;
       }
+
+    ion-card {
+        max-width: 400px;
+    }
 }

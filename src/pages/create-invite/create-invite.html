@@ -48,12 +48,17 @@
       </ion-row>
       <div [hidden]="slideIndex !== 3">
         <ion-list [hidden]="friendsList?.friends?.length === 0">
-          <button ion-item *ngFor="let item of friendsList?.friends" (click)="toggleUser(item['_id'])">
-            <ion-avatar item-start>
-              <img [src]="item.avatar">
-            </ion-avatar>
-            <div>{{ item.username }}</div>
-          </button>
+            <div ion-item *ngFor="let item of friendsList?.friends">
+              <button class="user-toggle" (click)="toggleUser(item['_id'])">
+                <div class="user">
+                    <ion-avatar item-start>
+                        <img [src]="item.avatar">
+                    </ion-avatar>
+                    <div class="username">{{ item.username }}</div>
+                </div>
+                <div class="check-icon" [hidden]="!checkToggle(item['_id']) == true">SELECTED !</div>
+              </button>
+            </div>
         </ion-list>
         <button [hidden]="invitedList?.length === 0" item-end ion-button block (click)="sendInvite()">SEND INVITATIONS</button>
       </div>
