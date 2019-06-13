@@ -23,6 +23,7 @@ export class InvitePage {
   private current : Object;
 
   private data : Object;
+  private entries: Array<string>;
   private map : any;
   
   constructor(
@@ -38,6 +39,7 @@ export class InvitePage {
     load.present();
 
     this.data = this.navParams.data;
+    this.entries = this.data.participate;
     this.apiLoader.load()
     .then(() => {
       this.map = new google.maps.Map(this.gmap.nativeElement,{
@@ -52,7 +54,7 @@ export class InvitePage {
         anchorPoint: new google.maps.Point(0, -29)
       });
     });
-
+    
     let token = localStorage.getItem('id_token');
     this.request.getCurrentUser({ token })
       .then(res => {
@@ -84,6 +86,30 @@ export class InvitePage {
     return moment(date).format('hh:mm a');
   }
 
+  public removeFromEntries(userId: string) : void {
+    if (userId) {
+        let index = this.entries.indexOf(userId);
+        
+        if (index > -1) {
+            if (index == 0)
+                this.entries.shift();
+            else 
+                this.entries = this.entries.splice(index, 1);
+        }
+    }
+  }
+  
+  public addToEntries(userId: string) : void {
+    if (userId){
+        this.entries.push(userId);
+    }
+  }
+  
+  public checkEntry(userId: string) : boolean {
+    console.log(this.entries);
+    return (userId && this.entries && this.entries.includes(userId));
+  }
+
   public acceptInvite() : void {
     if (this.current){
       this.request.acceptInvite({ id: this.data['_id'], current : this.current['_id'] })
@@ -91,21 +117,13 @@ export class InvitePage {
           let data = res.json();
 
           this.toastMessage(data.success || data.error);
+          this.addToEntries(this.current['_id']);
         })
         .catch(console.error);
     }
   }
-  
-  public updateEntries() {
-    this.request.getInviteEntries({id: this.data['_id']})
-        .then(res => {
-            let data = res.json();
-            
-            console.log(data);
-        })
-        .catch(console.error);
-  }
-  
+
+
   public denyInvite() : void {
     if (this.current){
       this.request.denyInvite({ id: this.data['_id'], current : this.current['_id'] })
@@ -113,6 +131,7 @@ export class InvitePage {
           let data = res.json();
 
           this.toastMessage(data.success || data.error);
+          this.removeFromEntries(this.current['_id']);
         })
         .catch(console.error);
     }

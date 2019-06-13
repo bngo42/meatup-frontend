@@ -36,4 +36,9 @@ page-invite {
      .action-buttons, .action-buttons button{
         width: 100%;
     }
+    
+    .entries-list ion-item {
+        background-color: #eeeeee;
+        border-radius: 5px;
+    }
 }

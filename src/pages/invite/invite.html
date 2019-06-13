@@ -19,7 +19,6 @@
       <ion-note title="{{data.date_creation}}">{{ getTimeFrom(data.date_creation) }}</ion-note>
     </div>
   </ion-item>
-  <div ion-button (click)="updateEntries()">UPDATE ENTRIES</div>
  <div [hidden]="isOwner" class="action-buttons">
     <ion-row>
         <ion-col>
@@ -32,12 +31,13 @@
 </div>
   <ion-item no-lines>
     <h1 class="hr-title italic"> INVITED </h1>
-    <ion-list>
+    <ion-list class="entries-list">
       <ion-item *ngFor="let item of data.invited">
         <ion-avatar item-start>
           <img [src]="item?.avatar"/>
         </ion-avatar>
         <h2>{{ item.username }}</h2>
+        <div item-end>{{ checkEntry(item?._id) ? "Accepted" : "Refused"}}</div>
       </ion-item>
     </ion-list>
   </ion-item>
