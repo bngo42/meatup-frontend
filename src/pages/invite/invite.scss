@@ -8,6 +8,10 @@ page-invite {
         border: none !important;
     }
 
+    ion-header ion-icon {
+        color: black !important;
+    }
+
     #gMap {
         min-height: 400px;
         height:40%;
@@ -18,6 +22,7 @@ page-invite {
         z-index: 1;
         overflow: hidden;
         text-align: center;
+        padding: 1em 0;
     }
     .hr-title:before, .hr-title:after {
         position: absolute;
@@ -29,7 +34,7 @@ page-invite {
         background-color: #cecece;
     }
     .hr-title:before {
-        margin-left: -40%;
+        margin-left: -50%;
         text-align: right;
     }
 

@@ -4,9 +4,11 @@
     <ion-avatar item-start>
       <img [src]="data.creator?.avatar">
     </ion-avatar>
+    <small>created by</small>
     <h1>{{ data.creator.username }}</h1>
   </ion-item>
   </ion-row>
+  <ion-row class="dark-background"></ion-row>
   <img [src]="getMap(data.location.latitude, data.location.longitude)"/>
   <ion-item>
     <h1 class="title">{{ data.title }}</h1>

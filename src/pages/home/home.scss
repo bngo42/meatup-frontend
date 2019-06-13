@@ -19,4 +19,11 @@ page-home {
     ion-card {
         max-width: 400px;
     }
+    
+    @media (max-width: 950px) {
+        .invite-list {
+            justify-content: center;
+            border:1px solid red;
+        }
+    }
 }
