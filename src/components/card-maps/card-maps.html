@@ -9,15 +9,15 @@
   </ion-row>
   <img [src]="getMap(data.location.latitude, data.location.longitude)"/>
   <ion-item>
-    <h1>{{ data.title }}</h1>
-    <h5>{{ data.location.address }}</h5>
-    <h1 item-end>{{ data.datetime }}</h1>
+    <h1 class="title">{{ data.title }}</h1>
+    <h5 class="address">{{ data.location.address }}</h5>
+    <h1 class="datetime" item-end>{{ data.datetime }}</h1>
   </ion-item>
   <ion-item *ngIf="data.invited.length > 0">
     <ion-row>
       Also invited:
       <ion-col>
-        <ion-row>
+        <ion-row class="invited-list">
           <ion-avatar *ngFor="let item of data.invited | slice:0:5; let i=index" >
             <img [src]="item.avatar"/>
           </ion-avatar>
@@ -25,6 +25,6 @@
         <ion-note *ngIf="data.invited.length > 5">{{ 'and ' + (data.invited.length - 5) +' other...'}}</ion-note>
       </ion-col>
     </ion-row>
-    <ion-note item-end>{{ getTimeFrom(data.date_creation) }}</ion-note>
+    <ion-note class="creation-date" item-end>{{ getTimeFrom(data.date_creation) }}</ion-note>
   </ion-item>
 </ion-card>

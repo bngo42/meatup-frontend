@@ -39,7 +39,7 @@ export class InvitePage {
     load.present();
 
     this.data = this.navParams.data;
-    this.entries = this.data.participate;
+    this.entries = this.data['participate'];
     this.apiLoader.load()
     .then(() => {
       this.map = new google.maps.Map(this.gmap.nativeElement,{
@@ -107,7 +107,7 @@ export class InvitePage {
   
   public checkEntry(userId: string) : boolean {
     console.log(this.entries);
-    return (userId && this.entries && this.entries.includes(userId));
+    return (userId && this.entries && this.entries.includes(userId.toString()));
   }
 
   public acceptInvite() : void {

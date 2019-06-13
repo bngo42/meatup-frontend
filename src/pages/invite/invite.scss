@@ -26,19 +26,16 @@ page-invite {
         width: 50%;
         height: 1px;
         content: '\a0';
-        background-color: black;
+        background-color: #cecece;
     }
     .hr-title:before {
-        margin-left: -50%;
+        margin-left: -40%;
         text-align: right;
     }
-    
-     .action-buttons, .action-buttons button{
-        width: 100%;
-    }
-    
+
     .entries-list ion-item {
-        background-color: #eeeeee;
+        background-color: #333;
+        margin: 1em 0;
         border-radius: 5px;
     }
 }

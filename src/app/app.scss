@@ -15,8 +15,13 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+* {
+    color: #cecece !important;
+}
+
 ion-menu {
     ion-content .scroll-content{
         overflow-y: hidden !important;
     }
+    
 }

@@ -13,7 +13,7 @@
   <ion-item no-lines>
     <h1>{{ data.title }}</h1>
     <h5>{{ data.location.address }}</h5>
-    <a ion-button target="_blank" [href]="'https://www.google.com/maps/dir//' + data.location.address">DEFINIR UN ITINERAIRE</a>
+    <a ion-button color="dark" target="_blank" [href]="'https://www.google.com/maps/dir//' + data.location.address">DEFINIR UN ITINERAIRE</a>
     <div item-end>
       <h1 title="{{data.datetime}}">{{ data.datetime }}</h1>
       <ion-note title="{{data.date_creation}}">{{ getTimeFrom(data.date_creation) }}</ion-note>
@@ -22,10 +22,10 @@
  <div [hidden]="isOwner" class="action-buttons">
     <ion-row>
         <ion-col>
-            <button (click)="denyInvite()" ion-button color="danger"><ion-icon name="close"></ion-icon></button>
+            <button (click)="denyInvite()" ion-button full color="danger"><ion-icon name="close"></ion-icon></button>
         </ion-col>
         <ion-col>
-            <button (click)="acceptInvite()" ion-button color="secondary"><ion-icon name="checkmark"></ion-icon></button>
+            <button (click)="acceptInvite()" ion-button full color="secondary"><ion-icon name="checkmark"></ion-icon></button>
         </ion-col>
     </ion-row>
 </div>
@@ -37,7 +37,7 @@
           <img [src]="item?.avatar"/>
         </ion-avatar>
         <h2>{{ item.username }}</h2>
-        <div item-end>{{ checkEntry(item?._id) ? "Accepted" : "Refused"}}</div>
+        <div item-end>{{ checkEntry(item?._id) ? "Interested" : "Not interested"}}</div>
       </ion-item>
     </ion-list>
   </ion-item>

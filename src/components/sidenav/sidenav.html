@@ -6,7 +6,7 @@
     </ion-header>
       <ion-content>    
           <ion-list>
-            <button ion-item icon-start *ngFor="let item of menuItem" (click)="exec(item.label)">
+            <button ion-item class=“item-borderless” icon-start *ngFor="let item of menuItem" (click)="exec(item.label)">
                 <ion-icon name="{{ item.icon }}" item-start></ion-icon>
                 {{ item.label }}
             </button>
