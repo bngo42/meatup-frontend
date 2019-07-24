@@ -6,7 +6,7 @@ Projet de développement d'application mobile avec le framework 'Ionic'(Cordova 
 "Invitez vos amis à partager un repas dans le restaurant de votre choix via l'application mobile"
 
 
-Frontend fait avec le framework Ionic - Backend fait avec NodeJs & MongoDB
+Frontend fait avec le framework Ionic - Backend fait en NodeJs & MongoDB
 
 Live Preview: https://meatup-9178d.firebaseapp.com
 
